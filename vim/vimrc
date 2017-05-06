@@ -8,8 +8,11 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
+Plugin 'klen/python-mode'
 Plugin 'fatih/vim-go'
 call vundle#end()
 filetype plugin indent on
@@ -35,6 +38,10 @@ set helplang=cn "帮助系统设置为中文
 set foldmethod=indent "代码折叠
 set foldlevel=99
 
+colorscheme molokai
+set guifont=Monaco:h14
+
+set completeopt=menu
 
 " nerdtree
 nmap <F6> :NERDTreeToggle<cr>
@@ -50,6 +57,19 @@ nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
+" syntastic
+let g:syntastic_ignore_files = ['\.py$']
+
+
+" yapf
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
+
+
+" python-mode
+" let g:pymode_python = 'python3'
+let g:pymode_lint_ignore="E501"
 
 
 " vim-go
