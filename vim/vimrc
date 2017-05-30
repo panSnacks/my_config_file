@@ -43,8 +43,17 @@ set guifont=Monaco:h14
 
 set completeopt=menu
 
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+
 " nerdtree
 nmap <F6> :NERDTreeToggle<cr>
+let NERDTreeIgnore = ['\.pyc$']
 
 
 " tagbar
@@ -53,8 +62,8 @@ let g:tagbar_autofocus = 1
 
 
 " vim-airline
-nnoremap <C-h> :bp<CR>
-nnoremap <C-l> :bn<CR>
+nnoremap <C-n> :bp<CR>
+nnoremap <C-m> :bn<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
@@ -68,8 +77,10 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
 
 
 " python-mode
-" let g:pymode_python = 'python3'
+let g:pymode_python = 'python'
 let g:pymode_lint_ignore="E501"
+let g:pymode_folding = 1
+let g:pymode_rope_completion = 0  "YCM is enough
 
 
 " vim-go
