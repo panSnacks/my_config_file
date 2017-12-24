@@ -14,6 +14,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'klen/python-mode'
 Plugin 'fatih/vim-go'
+Plugin 'mileszs/ack.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -37,6 +38,7 @@ set hls "检索时高亮显示匹配项
 set helplang=cn "帮助系统设置为中文
 set foldmethod=indent "代码折叠
 set foldlevel=99
+set backspace=2
 
 colorscheme molokai
 set guifont=Monaco:h14
@@ -51,9 +53,16 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 
+" easier moving of code blocks
+" Try to go into visual mode (v), then select several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv
+vnoremap > >gv
+
+
 " nerdtree
 nmap <F6> :NERDTreeToggle<cr>
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
 
 " tagbar
@@ -72,15 +81,25 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:syntastic_ignore_files = ['\.py$']
 
 
+" ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+
 " yapf
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
 
 
 " python-mode
-let g:pymode_python = 'python'
+let g:pymode_python = 'python3'
 let g:pymode_lint_ignore="E501"
 let g:pymode_folding = 1
 let g:pymode_rope_completion = 0  "YCM is enough
+let g:pymode_rope_goto_definition_cmd = 'e'
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']
+
+
+" YCM
+" let g:loaded_youcompleteme = 1
 
 
 " vim-go
